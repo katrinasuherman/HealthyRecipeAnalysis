@@ -39,6 +39,3 @@ This data science project, conducted at UCSD, focuses on investigating whether r
 | `ingredients`   | Text for recipe ingredients                                                                                                                                  |
 | `n_ingredients` | Number of ingredients in recipe                                                                                                                              |
 
-=======
-hellow
->>>>>>> b32a0f31ae091e39982d141061acbec89d414acd
