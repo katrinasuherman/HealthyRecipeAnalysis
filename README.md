@@ -11,7 +11,7 @@ This project uses the `RAW_recipes` and `RAW_interactions` datasets, which provi
 
 This question matters because tags like "healthy" are often used to guide dietary decisions, yet their reliability is rarely scrutinized. With increasing focus on health-conscious eating, understanding whether these tags align with nutritional standards empowers individuals to make informed food choices and encourages transparency in recipe labeling. By examining this question, we aim to provide insights for health-conscious individuals, nutritionists, and recipe platforms, fostering better accountability and informed decisions in the culinary space.
 
-The first dataset, `RAW_recipes.csv`, contains 83782 rows, indicating 83782 unique recipes, with 10 columns recording the following information:
+The first dataset, `RAW_recipes.csv`, contains 83782 rows, indicating 83782 unique recipes, with 12 columns recording the following information:
 
 | Column          |Description |
 |---|---|
@@ -37,4 +37,16 @@ The second dataset, `RAW_interactions.csv`, contains 731927 rows and each row co
 | `date`     | Date of interaction   |
 | `rating`   | Rating given          |
 | `review`   | Review text           |
+
+After gathering the recipes and interaction datasets, we left merged the two datasets and created a new column `'rating_avg'` containing the average rating per recipe. In the merged dataset, we filled all ratings of $0$ with `np.nan`. A rating of $0$ can indicate missing or unsubmitted ratings rather than an actual evaluation. By replacing these values with `np.nan`, we treat them as missing data, which aligns with their likely intent. Including $0$ as a valid rating could also significantly lower the calculated average ratings for recipes, especially if a large number of $0$ values are present ($15035$ ratings of $0$).
+
+Based on our question, we want to compare the nutritional values (sugar and saturated fat) for "healthy" tagged and no "healthy" tagged recipes. To investigate this, the 'nutrition' column was broken down into seperate components, including `'calories (#)'`, `'total fat (PDV)'`, `'sugar (PDV)'`, and others. The percent daily value (PDV) represents how much a nutrient in a serving contributes to a person's daily dietary needs. We then created a new column called `'sugar'`, which calculates the proportion of calories from sugar in relation to the total calories of a recipe. We also want to analyze the saturated fat; resulting to a second new column called `'saturated_fat'` that calculates the proportion of calories from saturated fat in relation to the total calories of a recipe. 
+
+In addition, we also added `'is_healthy'` column to the dataframe by checking if the tag of the recipe contains 'healthy' with values 'True' if it contains 'healthy' and 'False' if it does not contain 'healthy' tag.
+
+Doing these steps enable us to create a robust framework, allowing it easier to analyze the relationship between nutritional values and recipe characteristics. 
+
+## Step 2: Data Cleaning and Exploratory Data Analysis
+
+
 
