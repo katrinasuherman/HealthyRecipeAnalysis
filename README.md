@@ -46,8 +46,9 @@ In addition, we also added `'is_healthy'` column to the dataframe by checking if
 
 Doing these steps enable us to create a robust framework, allowing it easier to analyze the relationship between nutritional values and recipe characteristics. 
 
-## Data Cleaning and Exploratory Data Analysis
+# Data Cleaning and Exploratory Data Analysis
 
+# Data Cleaning
 After we added additional columns such as `is_healthy`, `sugar`, and `saturated_fat`, we performed a series of data cleaning steps:
 
 <!-- Describe, in detail, the data cleaning steps you took and how they affected your analyses. The steps should be explained in reference to the data generating process. Show the head of your cleaned DataFrame (see Part 2: Report for instructions). -->
@@ -76,7 +77,7 @@ Result:
 <!-- insert cleaned data -->
 
 
-# Univariate Analysis
+## Univariate Analysis
 
 <!-- Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one univariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.) -->
 
@@ -85,7 +86,7 @@ For this analysis, we observed the distribution of the proportion of sugar and t
 <!-- insert plot dist. of sugar proportion -->
 <!-- insert plot dist. of sat fat proportion -->
 
-# Bivariate Analysis
+## Bivariate Analysis
 We also observed the distribution of the proportion of the saturated fats and the proportion of the sugar of the recipe based on the `'is_healthy'` column.
 
 1. Observe the saturated fat distribution grouped by `'is_healthy'`.
@@ -100,7 +101,7 @@ The box plot above compares the distribution of saturated fat proportions (PDV) 
 
 This box plot suggests that "healthy" recipes may sometimes include higher sugar content. 
 
-# Interesting Aggregates
+## Interesting Aggregates
 From this data set, we observed the relationship between sugar proportion to the number of ingredients to see if there might be a across recipes by calculating the mean, median, minimum, and maximum values for sugar content.
 
 
@@ -109,16 +110,14 @@ From this data set, we observed the relationship between sugar proportion to the
 Recipes with fewer ingredients tend to have higher sugar proportions on average.
 This suggests that simpler recipes (fewer ingredients) might often be desserts or sugar-rich recipes like cookies or cakes.
 
-## Assessment of Missingness
+# Assessment of Missingness
 
 <!-- State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term “NMAR.” -->
 
-# NMAR Variables
+## NMAR Variables
 In our data, the missingness of the `'rating'` column is NMAR. This makes sense because individuals who do not have strong opinions about a recipe are less likely to submit a rating. On the other hand, individuals with stronger reactions, whether positive or negative, are more motivated to share their feedback. For example, if someone tries a recipe and had a poor experience, they would be more inclined to leave a bad rating.
 
-and maybe review jg NMAR?????
-
-# Missingness Dependency
+## Missingness Dependency
 <!-- Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
 • The distribution of column Y when column X is missing and the distribution of column Y when column X is not missing, as was done in Lecture 8.
 • The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic. -->
@@ -206,7 +205,7 @@ Third, **we investigated if the missingness in the `'rating'` depends on the min
     
 Since the p_value that we found (0.126) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
 
-## Hypothesis Testing
+# Hypothesis Testing
 Back to our main research question, which is to investigate if **Recipes Tagged as “Healthy” Tend to Have Significantly Lower Proportion for Saturated Fat or Sugar Compared to Recipes Without this Tag?**
 
 Since this involves two variables (saturated fat and sugar), we will conduct separate hypothesis tests for each variable. The steps are as follows:
@@ -257,9 +256,9 @@ Since the p_value that we found (1.0) is > 0.05 which is the significance level 
 Since the p_value that we found (0.0) is <= 0.05 which is the significance level that we set, **we reject the null hypothesis. Recipes tagged as "healthy" does not have the same proportion of saturated fat as recipes not tagged as "healthy"**. This indicates that the proportion of saturated fat in recipes tagged as "healthy" is significantly lower than the proportion of saturated fat in recipes not tagged as "healthy." This result supports the idea that recipes labeled as "healthy" are associated with lower saturated fat content.
 
 
-## Framing a Prediction Problem
+# Framing a Prediction Problem
 
-# Problem Identification
+## Problem Identification
 
 <!-- Clearly state your prediction problem and type (classification or regression). If you are building a classifier, make sure to state whether you are performing binary classification or multiclass classification. Report the response variable (i.e. the variable you are predicting) and why you chose it, the metric you are using to evaluate your model and why you chose it over other suitable metrics (e.g. accuracy vs. F1-score).
 
@@ -328,6 +327,10 @@ Instead of using arbitrary values for hyperparameters, we can create a better mo
 The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with well-balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores (0.99 for both classes), which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (max_depth of 50 and 150 estimators) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
 
 ## Fairness Analysis
+<!-- Clearly state your choice of Group X and Group Y, your evaluation metric, your null and alternative hypotheses, your choice of test statistic and significance level, the resulting p-value, and your conclusion.
+
+Optional: Embed a visualization related to your permutation test in your website. -->
+
 1. For our fairness analysis, we will divide the groups of sugar into two, 'high sugar' and 'low sugar' based on a threshold (the median).
 
 2. We will add a new column called `prediction` to contain the model prediction result.
