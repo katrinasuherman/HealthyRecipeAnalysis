@@ -78,6 +78,7 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 5. Added `sugar` column.
 
     The formula for calculating sugar proportion per calorie is:
+    
     Sugar Proportion per Calorie = ((Sugar PDV / 100) * 50) / Calories
 
     Where:
@@ -88,6 +89,7 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 6. Added `saturated_fat` column.
 
     Similarly, the formula for calculating saturated fat proportion per calorie is:
+
     Saturated Fat Proportion per Calorie = ((Saturated Fat PDV / 100) * 20) / Calories
 
     Where:
