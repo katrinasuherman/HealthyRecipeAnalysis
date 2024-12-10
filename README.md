@@ -573,7 +573,7 @@ Optional: Embed a visualization related to your permutation test in your website
 
     <!-- graph -->
 <iframe
-    src="assets/last_fig.html"
+    src="assets/interactive_permutation_test.html"
     width="800"
     height="600"
     frameborder="0"
