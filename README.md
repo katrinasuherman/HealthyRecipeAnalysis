@@ -78,15 +78,14 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
 
 We want to convert to nutrient in grams with:
-$$
-\text{Nutrient (grams)} = \left( \frac{\text{PDV}}{100} \right) \times \text{Reference Daily Value (grams)}
-$$
+
+![Equation](https://latex.codecogs.com/png.latex?Nutrient%20(grams)%20%3D%20%5Cleft(%20%5Cfrac%7BPDV%7D%7B100%7D%20%5Cright)%20%5Ctimes%20Reference%20Daily%20Value%20(grams))
+
 
 Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-$$
-\text{Nutrition Proportion per Calorie} = \frac{\text{Nutrient (grams)}}{\text{Calories}}
-$$
+![Equation](https://latex.codecogs.com/png.latex Nutrition%20Proportion%20per%20Calorie%20%3D%20%5Cfrac%7BNutrient%20(grams)%7D%7BCalories%7D)
+
 
 We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
 
