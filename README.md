@@ -1,4 +1,10 @@
-# Do Recipes Tagged as “Healthy” Tend to Have Significantly Lower Proportion for Saturated Fat or Sugar Compared to Recipes Without this Tag?
+<style>
+iframe {
+  margin-bottom: 10px;
+}
+</style>
+
+# Do "Healthy" Tagged Recipes Contain Significantly Lower Proportions of Saturated Fat and Sugar Compared to Untagged Recipes?
 
 Authors: Katrina Suherman & Rheka Narwastu
 
@@ -6,6 +12,7 @@ Authors: Katrina Suherman & Rheka Narwastu
 This data science project, conducted at UCSD, focuses on investigating whether recipes tagged as “healthy” tend to have a significantly lower proportion of saturated fat or sugar compared to recipes without this tag. 
 
 ## Introduction
+
 
 This project uses the `RAW_recipes` and `RAW_interactions` datasets, which provide detailed information about thousands of recipes and user interactions on [food.com.](https://www.food.com) The `RAW_recipes` dataset includes attributes such as number of ingredients, steps, nutritional values, tags like "healthy, " and more. Meanwhile, the `RAW_interactions` dataset offers insights into user reviews and ratings. Together, these datasets enable us to explore whether recipes tagged as “healthy” truly reflect better nutritional quality. Our central question is: **Do recipes tagged as “healthy” tend to have significantly lower proportions of saturated fat or sugar compared to recipes without this tag?** 
 
@@ -97,27 +104,27 @@ Each variables in the data frame above has their own data types.
 
 | Column Name         | Data Type  |
 |---------------------|------------|
-| name                | object     |
-| id                  | int64      |
-| minutes             | int64      |
-| contributor_id      | int64      |
-| submitted           | object     |
-| tags                | object     |
-| nutrition           | object     |
-| n_steps             | int64      |
-| steps               | object     |
-| description         | object     |
-| ingredients         | object     |
-| n_ingredients       | int64      |
-| user_id             | float64    |
-| recipe_id           | float64    |
-| date                | object     |
-| rating              | float64    |
-| review              | object     |
-| rating_avg          | float64    |
-| is_healthy          | bool       |
-| sugar               | float64    |
-| saturated_fat       | float64    |
+| `name`                | object     |
+| `id`                  | int64      |
+| `minutes`             | int64      |
+| `contributor_id`      | int64      |
+| `submitted`           | object     |
+| `tags`                | object     |
+| `nutrition`           | object     |
+| `n_steps`             | int64      |
+| `steps`               | object     |
+| `description`         | object     |
+| `ingredients`         | object     |
+| `n_ingredients`       | int64      |
+| `user_id`             | float64    |
+| `recipe_id`           | float64    |
+| `date`                | object     |
+| `rating`              | float64    |
+| `review`              | object     |
+| `rating_avg`          | float64    |
+| `is_healthy`          | bool       |
+| `sugar`               | float64    |
+| `saturated_fat`       | float64    |
 
 ## Univariate Analysis
 
@@ -590,19 +597,14 @@ Optional: Embed a visualization related to your permutation test in your website
     After we run the permutation test, we got a p-value of 0.933. 
 
     <!-- graph -->
-<div style="margin: 0; padding: 0; text-align: center;">
-  <iframe
+<iframe
     src="assets/interactive_permutation_test.html"
     width="800"
     height="600"
     frameborder="0"
     style="margin: 0; padding: 0; display: block;"
-  ></iframe>
-</div>
-<p style="margin-top: 10px; text-align: justify;">
-  In conclusion, the p-value obtained from the permutation test is <strong>0.965</strong>, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model’s precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
-</p>
-<!-- In conclusion, the p-value obtained from the permutation test is **0.965** which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute. -->
+></iframe>
+In conclusion, the p-value obtained from the permutation test is **0.965** which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
 
 
 
