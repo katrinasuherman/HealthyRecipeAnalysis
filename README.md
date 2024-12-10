@@ -78,15 +78,43 @@ After we obtained two datasets, we performed a series of data cleaning steps:
     We created a boolean column to identify recipes tagged as "healthy" marking them as `True` or `False` based on their tags.
     We have made sure that the values of the tags that contain "healthy" are only 'healthy' and 'healthy-2'.
 
-Result:
+Since we are not going to utilize all the columns, we will leave other columns as is.
+This is what the few rows of the resulted data frame looks like:
 
-| Name                               | ID      | Minutes | Contributor ID | Rating Avg | Is Healthy | Sugar | Saturated Fat |
-|------------------------------------|---------|---------|----------------|------------|------------|-------|----------------|
-| 1 brownies in the world best ever | 333281  | 40      | 985201         | 4.0        | False      | 0.22  | 0.08           |
-| 1 in canada chocolate chip cookies| 453467  | 45      | 1848091        | 5.0        | False      | 0.22  | 0.05           |
-| 412 broccoli casserole            | 306168  | 40      | 50969          | 5.0        | False      | 0.02  | 0.11           |
-| 412 broccoli casserole            | 306168  | 40      | 50969          | 5.0        | False      | 0.02  | 0.11           |
-| 412 broccoli casserole            | 306168  | 40      | 50969          | 5.0        | False      | 0.02  | 0.11           |
+| name                              | id     | minutes | contributor_id | submitted   | tags                              | nutrition                  | n_steps | steps                                     | description                      | ingredients                          | n_ingredients | user_id   | recipe_id | date       | rating | review                                       | rating_avg | is_healthy | sugar | saturated_fat |
+|-----------------------------------|--------|---------|----------------|-------------|----------------------------------|----------------------------|---------|-------------------------------------------|----------------------------------|-------------------------------------|---------------|-----------|-----------|------------|--------|---------------------------------------------|------------|------------|-------|---------------|
+| 1 brownies in the world best ever | 333281 | 40      | 985201         | 2008-10-27  | ['60-minutes-or-less', 'time...']| [138.4, 10.0, 50.0, ...]  | 10      | ['heat the oven to 350f and arrange...'] | these are the most; chocolatey...| ['bittersweet chocolate', 'uns...'] | 9             | 3.87e+05  | 333281.0  | 2008-11-19 | 4.0    | These were pretty good, but took forever... | 4.0        | False      | 0.22  | 0.08          |
+| 1 in canada chocolate chip cookies| 453467 | 45      | 1848091        | 2011-04-11  | ['60-minutes-or-less', 'time...']| [595.1, 46.0, 211.0, ...] | 12      | ['preheat oven the 350 degrees f', ...] | this is the recipe that we use... | ['white sugar', 'brown sugar', ...] | 11            | 4.25e+05  | 453467.0  | 2012-01-26 | 5.0    | Originally I was gonna cut the recipe in... | 5.0        | False      | 0.22  | 0.05          |
+| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 2.98e+04  | 306168.0  | 2008-12-31 | 5.0    | This was one of the best broccoli casse... | 5.0        | False      | 0.02  | 0.11          |
+| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 1.20e+06  | 306168.0  | 2009-04-13 | 5.0    | I made this for my son's first birthday... | 5.0        | False      | 0.02  | 0.11          |
+| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 7.69e+05  | 306168.0  | 2013-08-02 | 5.0    | Loved this. Be sure to completely thaw... | 5.0        | False      | 0.02  | 0.11          |
+
+Each variables in the data frame above has their own data types.
+## Column Data Types
+
+| Column Name         | Data Type  |
+|---------------------|------------|
+| name                | object     |
+| id                  | int64      |
+| minutes             | int64      |
+| contributor_id      | int64      |
+| submitted           | object     |
+| tags                | object     |
+| nutrition           | object     |
+| n_steps             | int64      |
+| steps               | object     |
+| description         | object     |
+| ingredients         | object     |
+| n_ingredients       | int64      |
+| user_id             | float64    |
+| recipe_id           | float64    |
+| date                | object     |
+| rating              | float64    |
+| review              | object     |
+| rating_avg          | float64    |
+| is_healthy          | bool       |
+| sugar               | float64    |
+| saturated_fat       | float64    |
 
 ## Univariate Analysis
 
@@ -106,7 +134,7 @@ For this analysis, we observed the distribution of the proportion of sugar and t
 <!-- insert plot dist. of sat fat proportion -->
 
 <iframe
-  src="assets/fig_satfat-name.html"
+  src="assets/fig_satfat.html"
   width="800"
   height="600"
   frameborder="0"
@@ -119,11 +147,26 @@ We also observed the distribution of the proportion of the saturated fats and th
 
 <!-- insert plot dist. of sat fat grouped by is healthy -->
 
+<iframe
+  src="assets/box-fig.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 The box plot above compares the distribution of saturated fat proportions (PDV) between recipes tagged as "healthy" (true) and those not tagged as "healthy" (false). This suggests that "healthy" recipes tend to have less saturated fat on average.
 
 2. Observed the sugar distribution grouped by `'is_healthy'`.
 
 <!-- insert plot dist. of sat fat grouped by is healthy -->
+
+<iframe
+  src="assets/box-fig2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 This box plot suggests that "healthy" recipes may sometimes include higher sugar content. 
 
@@ -132,6 +175,13 @@ From this data set, we observed the relationship between sugar proportion to the
 
 
 <!-- insert plot dist. of sugar and n ingredients -->
+<iframe
+  src="assets/sugar_n_fig.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 Recipes with fewer ingredients tend to have higher sugar proportions on average.
 This suggests that simpler recipes (fewer ingredients) might often be desserts or sugar-rich recipes like cookies.
@@ -165,11 +215,26 @@ The hypotheses and test statistic are as follows:
 
     <!-- insert plot Distributions of saturated fat proportions when rating is missing or not -->
 
+<iframe
+    src="assets/sat_fat_missing.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
+
+
     Because the two distributions show a similar shape, we chose the absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing and non-missing ratings as the test statistic.
 
 2. Run a permutation test and calculate the observed difference.
 
     <!-- insert plot Empirical Distribution of the Absolute Difference in Saturated Fat-->
+
+<iframe
+    src="assets/fig_2.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
@@ -193,11 +258,25 @@ The hypotheses and test statistic are as follows:
     Plot the distributions of sugar proportions when rating is missing and when rating is not missing.
     <!-- insert plot Distributions of sugar proportions when rating is missing or not-->
 
+<iframe
+    src="assets/sugar_missing.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
+
     We can see that the two distribution does not have similar shape. Hence, we chose K-S test as our test statistic.
 
 2. Run a permutation test and calculate the observed difference.
 
     <!-- insert plot Empirical Distribution of the K-S Statistic of Sugar Proportion-->
+
+<iframe
+    src="assets/fig_3.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
@@ -215,10 +294,23 @@ The hypotheses and test statistic are as follows:
     - Significance Level: 0.05
 
 <!-- insert plot before log transformation-->
+<iframe
+    src="assets/fig_4.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
 Because the range of the minutes are too significant, we are unable to see certain minutes on the graph. To better visualize the distribution and identify outliers, we can apply log transformation. Because there are values of 0 that exist in our `'minutes'` data, we use `log1p(x)` in Python, which computes `log(1+x)` to handle zeros.
 
 <!-- insert plot after log transformation-->
+
+<iframe
+    src="assets/fig_5.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
 1. Choosing a test statistic. 
 
@@ -229,6 +321,13 @@ Because the range of the minutes are too significant, we are unable to see certa
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
     <!-- insert plot after log transformation-->
+
+<iframe
+    src="assets/fig_6.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     The observed statistic of 51.4524 is indicated by the red vertical line on the graph. 
     
@@ -251,6 +350,13 @@ The hypotheses and test statistic are as follows:
 1. Choosing a test statistic.
     <!-- insert plot -->
 
+<iframe
+    src="assets/sugar_healthy_nonhealthy.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
+
     Based on the plot above, we could see that the two distributions are different. But we want to know which recipe has a lower proportion so we still chose the difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
 
 
@@ -259,6 +365,13 @@ The hypotheses and test statistic are as follows:
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
     <!-- insert plot -->
+
+<iframe
+    src="assets/fig_7.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     The observed statistic of 0.0516 is indicated by the red vertical line on the graph. 
 
@@ -275,6 +388,13 @@ The hypotheses and test statistic are as follows:
 
 1. Choosing a test statistic.
     <!-- insert plot -->
+<iframe
+    src="assets/satfats_healthy_nonhealthy.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
+
 
     We can see that the two distribution does not have similar shape. In contrast, we still chose the proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy" to determine which recipe has a lower proportion of saturated fats. 
 
@@ -283,6 +403,12 @@ The hypotheses and test statistic are as follows:
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
     <!-- insert plot after log transformation-->
+<iframe
+    src="assets/fig_8.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     The observed statistic of -0.04128 is indicated by the red vertical line on the graph. 
 
@@ -324,6 +450,26 @@ For classification, we employed a `RandomForestClassifier` with a maximum depth 
 Afterwards, the model was trained using an 80-20 train-test split.
 
 <!-- The result of training performance -->
+## Training Performance
+
+| Class        | Precision | Recall | F1-Score | Support  |
+|--------------|-----------|--------|----------|----------|
+| 0            | 0.83      | 0.98   | 0.90     | 149,811  |
+| 1            | 0.78      | 0.21   | 0.34     | 37,732   |
+| **Accuracy** | **0.83**  |        |          | 187,543  |
+| **Macro Avg**| 0.81      | 0.60   | 0.62     | 187,543  |
+| **Weighted Avg**| 0.82   | 0.83   | 0.79     | 187,543  |
+
+## Test Performance
+
+| Class        | Precision | Recall | F1-Score | Support  |
+|--------------|-----------|--------|----------|----------|
+| 0            | 0.83      | 0.98   | 0.90     | 37,493   |
+| 1            | 0.73      | 0.21   | 0.32     | 9,393    |
+| **Accuracy** | **0.83**  |        |          | 46,886   |
+| **Macro Avg**| 0.78      | 0.59   | 0.61     | 46,886   |
+| **Weighted Avg**| 0.81   | 0.83   | 0.78     | 46,886   |
+
 
 The baseline model achieves an overall accuracy of 83% on both training and test datasets, but the F1-scores reveal significant class imbalance. For class 0 ('not healthy'), the F1-score is high (0.90) on both sets, indicating strong precision and recall. However, for class 1 (healthy), the F1-score is much lower (0.32 on the test set), reflecting poor recall and modest precision. This imbalance suggests the model struggles to correctly identify healthy recipes and favors the majority class.
 
@@ -353,8 +499,28 @@ Instead of using arbitrary values for hyperparameters, we can create a better mo
 
 3. Evaluate the model based on the best estimator.
     <!-- Insert graph  -->
+## Training Performance
 
-    After fitting, make predictions, and evaluating the model based on the best estimator, we have found that the best maximum depth `max_depth` for our model is 50 and number of estimators or `n_estimators` is 150.
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.99      | 1.00   | 1.00     | 149,811 |
+| 1     | 0.99      | 0.98   | 0.98     | 37,732  |
+| **Accuracy** | **0.99** |        |          | 187,543 |
+| **Macro Avg** | 0.99      | 0.99   | 0.99     | 187,543 |
+| **Weighted Avg** | 0.99   | 0.99   | 0.99     | 187,543 |
+
+## Test Performance
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.96      | 0.97   | 0.97     | 37,493  |
+| 1     | 0.89      | 0.85   | 0.87     | 9,393   |
+| **Accuracy** | **0.95** |        |          | 46,886  |
+| **Macro Avg** | 0.92      | 0.91   | 0.92     | 46,886  |
+| **Weighted Avg** | 0.95   | 0.95   | 0.95     | 46,886  |
+
+
+After fitting, make predictions, and evaluating the model based on the best estimator, we have found that the best maximum depth `max_depth` for our model is 55 and number of estimators or `n_estimators` is 150.
 
 The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with well-balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores (0.99 for both classes), which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (`max_depth` of 50 and 150 estimators) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
 
@@ -368,6 +534,23 @@ Optional: Embed a visualization related to your permutation test in your website
 2. We will add a new column called `prediction` to contain the model prediction result.
 
     <!-- insert dataframe of prediction -->
+
+| Index   | saturated_fat | sugar  | sugar_group | prediction |
+|---------|---------------|--------|-------------|------------|
+| 44111   | 1.32e-02      | 0.03   | low sugar   | 0          |
+| 139442  | 1.35e-01      | 0.06   | high sugar  | 0          |
+| 46961   | 5.83e-02      | 0.04   | low sugar   | 0          |
+| 130648  | 1.83e-02      | 0.11   | high sugar  | 0          |
+| 82361   | 7.10e-03      | 0.23   | high sugar  | 0          |
+| ...     | ...           | ...    | ...         | ...        |
+| 127869  | 0.00e+00      | 0.00   | low sugar   | 0          |
+| 219764  | 1.90e-02      | 0.03   | low sugar   | 0          |
+| 114825  | 4.39e-02      | 0.01   | low sugar   | 0          |
+| 82261   | 0.00e+00      | 0.00   | low sugar   | 0          |
+| 213245  | 1.21e-01      | 0.15   | high sugar  | 0          |
+
+**Total Rows**: 46,886
+
 
 3. The chosen evaluation metric for this fairness analysis is **precision**, which measures the proportion of true positives among all positive predictions. Precision is particularly suitable for this context because it focuses on the correctness of positive predictions, such as labeling a recipe as "healthy," and minimizes false positives. This is important because false positives, where unhealthy recipes are incorrectly classified as healthy, can mislead users and have critical implications, especially in health-related scenarios. 
 
@@ -389,6 +572,12 @@ Optional: Embed a visualization related to your permutation test in your website
     After we run the permutation test, we got a p-value of 0.933. 
 
     <!-- graph -->
+<iframe
+    src="assets/last_fig.html"
+    width="800"
+    height="600"
+    frameborder="0"
+></iframe>
 
     In conclusion, the p-value obtained from the permutation test is **0.965**, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
 
