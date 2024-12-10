@@ -123,16 +123,13 @@ Each variables in the data frame above has their own data types.
 For this analysis, we observed the distribution of the proportion of sugar and the proportion of saturated fat in a recipe. Based on the two plots, the distribution skewed to the right, indicating that most of the recipes on [food.com](https://www.food.com) have a low proportion of sugar and saturated fats.
 
 <!-- insert plot dist. of sugar proportion -->
-
 <iframe
   src="assets/file-name.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 <!-- insert plot dist. of sat fat proportion -->
-
 <iframe
   src="assets/fig_satfat.html"
   width="800"
@@ -146,7 +143,6 @@ We also observed the distribution of the proportion of the saturated fats and th
 1. Observed the saturated fat distribution grouped by `'is_healthy'`.
 
 <!-- insert plot dist. of sat fat grouped by is healthy -->
-
 <iframe
   src="assets/box-fig.html"
   width="800"
@@ -159,21 +155,16 @@ The box plot above compares the distribution of saturated fat proportions (PDV) 
 2. Observed the sugar distribution grouped by `'is_healthy'`.
 
 <!-- insert plot dist. of sat fat grouped by is healthy -->
-
 <iframe
   src="assets/box-fig2.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
-
 This box plot suggests that "healthy" recipes may sometimes include higher sugar content. 
 
 ## Interesting Aggregates
 From this data set, we observed the relationship between sugar proportion to the number of ingredients to see if there might be a relationship across recipes. We used the mean, median, minimum, and maximum values for sugar content.
-
-
 <!-- insert plot dist. of sugar and n ingredients -->
 <iframe
   src="assets/sugar_n_fig.html"
@@ -181,8 +172,6 @@ From this data set, we observed the relationship between sugar proportion to the
   height="600"
   frameborder="0"
 ></iframe>
-
-
 Recipes with fewer ingredients tend to have higher sugar proportions on average.
 This suggests that simpler recipes (fewer ingredients) might often be desserts or sugar-rich recipes like cookies.
 
@@ -191,10 +180,15 @@ This suggests that simpler recipes (fewer ingredients) might often be desserts o
 <!-- State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term “NMAR.” -->
 
 ## NMAR Variables
-In our data, the missingness of the `review` column is NMAR. This makes sense because individuals who do not have strong opinions about a recipe are less likely to submit a rating. On the other hand, individuals with stronger reactions, whether positive or negative, are more motivated to share their feedback. For example, if someone tries a recipe and had a poor experience, they would be more inclined to leave a bad rating.
+In our data, the missingness of the `review` column is NMAR.
 
-However, if we were to add new ....
+- **Explanation for NMAR**: Missingness in the `'review'` column might depend on the specific content or experience associated with a recipe, which is not directly observable in the dataset. For example, users might only leave reviews if they had an exceptional (positive or negative) experience, while those with neutral or lackluster experiences might be less likely to contribute a review. This suggests that the missingness is related to unobserved factors (such as user satisfaction) that are not included in the dataset.
 
+- **Additional Data for Making it MAR**: To make the missingness **Missing At Random (MAR)**, we could collect data that explains why certain users choose not to leave reviews. For instance:
+  - Feedback submission habits of users (e.g., whether they tend to leave reviews for other recipes).
+  - Time spent on the recipe page or step completion rate, indicating the user’s level of engagement.
+  
+By gathering this additional data, we could link the missingness to observable variables, thereby making the missingness MAR instead of NMAR.
 ## Missingness Dependency
 <!-- Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
 • The distribution of column Y when column X is missing and the distribution of column Y when column X is not missing, as was done in Lecture 8.
@@ -204,26 +198,23 @@ To investigate the missingness of the `rating` column, **we investigated if the 
 
 The hypotheses and test statistic are as follows:
 
-    - Null Hypothesis: The distribution of `'saturated_fat'` when `'rating'` is missing is the same as the distribution of `'saturated_fat'` when `'rating'` is not missing.
-    - Alternate Hypothesis: The distribution of `'saturated_fat'` when `'rating'` is missing is not the same as the distribution of `'saturated_fat'` when `'rating'` is not missing.
-    - Test Statistic: The absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
-    - Significance Level: 0.05
+- Null Hypothesis: The distribution of `'saturated_fat'` when `'rating'` is missing is the same as the distribution of `'saturated_fat'` when `'rating'` is not missing.
+- Alternate Hypothesis: The distribution of `'saturated_fat'` when `'rating'` is missing is not the same as the distribution of `'saturated_fat'` when `'rating'` is not missing.
+- Test Statistic: The absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
+- Significance Level: 0.05
 
 
 1. Choosing a test statistic. 
     Firstly, we added a new column `rating_missing` to see if the `rating` is missing or not.
 
     <!-- insert plot Distributions of saturated fat proportions when rating is missing or not -->
-
 <iframe
     src="assets/sat_fat_missing.html"
     width="800"
     height="600"
     frameborder="0"
 ></iframe>
-
-
-    Because the two distributions show a similar shape, we chose the absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing and non-missing ratings as the test statistic.
+Because the two distributions show a similar shape, we chose the absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing and non-missing ratings as the test statistic.
 
 2. Run a permutation test and calculate the observed difference.
 
@@ -236,9 +227,9 @@ The hypotheses and test statistic are as follows:
     frameborder="0"
 ></iframe>
 
-    We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
+We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-    We also calculated the observed difference, which is 0.0019, indicated by the red vertical line on the graph. 
+We also calculated the observed difference, which is 0.0019, indicated by the red vertical line on the graph. 
     
 Since the p_value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'saturated_fat'`**, which is proportion of saturated fat in the recipe.
 
@@ -248,10 +239,10 @@ Second, **we investigated if the missingness in the `'rating'` depends on the pr
 
 The hypotheses and test statistic are as follows:
 
-    - Null Hypothesis: The distribution of `'sugar'` when `'rating'` is missing is the same as the distribution of `'sugar'` when `'rating'` is not missing.
-    - Alternate Hypothesis: The distribution of `'sugar'` when `'rating'` is missing is not the same as the distribution of `'sugar'` when `'rating'` is not missing.
-    - Test Statistic: K-S test statistic of the two groups.
-    - Significance Level: 0.05
+- Null Hypothesis: The distribution of `'sugar'` when `'rating'` is missing is the same as the distribution of `'sugar'` when `'rating'` is not missing.
+- Alternate Hypothesis: The distribution of `'sugar'` when `'rating'` is missing is not the same as the distribution of `'sugar'` when `'rating'` is not missing.
+- Test Statistic: K-S test statistic of the two groups.
+- Significance Level: 0.05
 
 
 1. Choosing a test statistic.
@@ -265,7 +256,7 @@ The hypotheses and test statistic are as follows:
     frameborder="0"
 ></iframe>
 
-    We can see that the two distribution does not have similar shape. Hence, we chose K-S test as our test statistic.
+We can see that the two distribution does not have similar shape. Hence, we chose K-S test as our test statistic.
 
 2. Run a permutation test and calculate the observed difference.
 
@@ -278,9 +269,9 @@ The hypotheses and test statistic are as follows:
     frameborder="0"
 ></iframe>
 
-    We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
+We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-    We also calculated the observed statistic, which is 0.0186, indicated by the red vertical line on the graph. 
+We also calculated the observed statistic, which is 0.0186, indicated by the red vertical line on the graph. 
     
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'sugar'`**, which is proportion of sugar in the recipe.
 
@@ -288,10 +279,10 @@ Since the p-value that we found (0.0) is <= 0.05 which is the significance level
 
 The hypotheses and test statistic are as follows:
 
-    - Null Hypothesis: The distribution of `'minutes'` when `'rating'` is missing is the same as the distribution of `'minutes'` when `'rating'` is not missing.
-    - Alternate Hypothesis: The distribution of `'minutes'` when `'rating'` is missing is not the same as the distribution of `'minutes'` when `'rating'` is not missing.
-    - Test Statistic: The absolute difference of mean in the minutes of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
-    - Significance Level: 0.05
+- Null Hypothesis: The distribution of `'minutes'` when `'rating'` is missing is the same as the distribution of `'minutes'` when `'rating'` is not missing.
+- Alternate Hypothesis: The distribution of `'minutes'` when `'rating'` is missing is not the same as the distribution of `'minutes'` when `'rating'` is not missing.
+- Test Statistic: The absolute difference of mean in the minutes of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
+- Significance Level: 0.05
 
 <!-- insert plot before log transformation-->
 <iframe
@@ -342,38 +333,33 @@ Since this involves two variables (saturated fat and sugar), we will conduct sep
 
 The hypotheses and test statistic are as follows:
 
-    - Null hypothesis: Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy".
-    - Alternate Hypothesis: Recipes tagged as "healthy" have a significantly lower proportion of sugar compared to recipes not tagged as "healthy".
-    - Test Statistic: The difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
-    - Significance Level: 0.05
+- Null hypothesis: Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy".
+- Alternate Hypothesis: Recipes tagged as "healthy" have a significantly lower proportion of sugar compared to recipes not tagged as "healthy".
+- Test Statistic: The difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
+- Significance Level: 0.05
 
 1. Choosing a test statistic.
     <!-- insert plot -->
-
 <iframe
     src="assets/sugar_healthy_nonhealthy.html"
     width="800"
     height="600"
     frameborder="0"
 ></iframe>
-
-    Based on the plot above, we could see that the two distributions are different. But we want to know which recipe has a lower proportion so we still chose the difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
+Based on the plot above, we could see that the two distributions are different. But we want to know which recipe has a lower proportion so we still chose the difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
 
 
 2. Run a permutation test and calculate the observed difference.
 
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
-
     <!-- insert plot -->
-
 <iframe
     src="assets/fig_7.html"
     width="800"
     height="600"
     frameborder="0"
 ></iframe>
-
-    The observed statistic of 0.0516 is indicated by the red vertical line on the graph. 
+The observed statistic of 0.0516 is indicated by the red vertical line on the graph. 
 
 Since the p-value that we found (1.0) is > 0.05 which is the significance level that we set, **we fail to reject the null hypothesis. Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy."**
 
@@ -381,10 +367,10 @@ Since the p-value that we found (1.0) is > 0.05 which is the significance level 
     
 The hypotheses and test statistic are as follows:
 
-    - Null hypothesis: Recipes tagged as "healthy" have the same proportion of saturated fat as recipes not tagged as "healthy".
-    - Alternate Hypothesis: Recipes tagged as "healthy" have a significantly lower proportion of saturated fat compared to recipes not tagged as "healthy".
-    - Test Statistic: proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy"
-    - Significance Level: 0.05
+- Null hypothesis: Recipes tagged as "healthy" have the same proportion of saturated fat as recipes not tagged as "healthy".
+- Alternate Hypothesis: Recipes tagged as "healthy" have a significantly lower proportion of saturated fat compared to recipes not tagged as "healthy".
+- Test Statistic: proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy"
+- Significance Level: 0.05
 
 1. Choosing a test statistic.
     <!-- insert plot -->
@@ -395,8 +381,7 @@ The hypotheses and test statistic are as follows:
     frameborder="0"
 ></iframe>
 
-
-    We can see that the two distribution does not have similar shape. In contrast, we still chose the proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy" to determine which recipe has a lower proportion of saturated fats. 
+We can see that the two distribution does not have similar shape. In contrast, we still chose the proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy" to determine which recipe has a lower proportion of saturated fats. 
 
 2. Run a permutation test and calculate the observed difference.
 
@@ -410,7 +395,7 @@ The hypotheses and test statistic are as follows:
     frameborder="0"
 ></iframe>
 
-    The observed statistic of -0.04128 is indicated by the red vertical line on the graph. 
+The observed statistic of -0.04128 is indicated by the red vertical line on the graph. 
 
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, **we reject the null hypothesis. Recipes tagged as "healthy" does not have the same proportion of saturated fat as recipes not tagged as "healthy"**. This indicates that the proportion of saturated fat in recipes tagged as "healthy" is significantly lower than the proportion of saturated fat in recipes not tagged as "healthy". This result supports the idea that recipes labeled as "healthy" are associated with lower saturated fat content.
 
@@ -429,12 +414,12 @@ Since `is_healthy` is a nominal categorical variable with values either `True` o
 
 Its performance was assessed through classification metrics, including precision, recall, F1-score, and accuracy, on both the training and testing datasets. 
 
-    - Precision was chosen to measure the proportion of correctly identified healthy recipes out of all recipes predicted as healthy, which is important if false positives (unhealthy recipes mislabeled as healthy) need to be minimized.
-    - Recall was included to evaluate the proportion of truly healthy recipes correctly identified by the model, which is crucial if missing healthy recipes (false negatives) is a significant concern.
-    - F1-score provides a balanced measure that considers both precision and recall, making it suitable when there is a trade-off between these metrics or when the classes are imbalanced
-    - Accuracy was also reported as it gives a general overview of model performance by showing the proportion of all correctly classified recipes. However, it may be less reliable if the dataset is imbalanced.
+- Precision was chosen to measure the proportion of correctly identified healthy recipes out of all recipes predicted as healthy, which is important if false positives (unhealthy recipes mislabeled as healthy) need to be minimized.
+- Recall was included to evaluate the proportion of truly healthy recipes correctly identified by the model, which is crucial if missing healthy recipes (false negatives) is a significant concern.
+- F1-score provides a balanced measure that considers both precision and recall, making it suitable when there is a trade-off between these metrics or when the classes are imbalanced
+- Accuracy was also reported as it gives a general overview of model performance by showing the proportion of all correctly classified recipes. However, it may be less reliable if the dataset is imbalanced.
 
-To ensure the model aligns with real-world prediction scenarios, we carefully selected features (saturated_fat and sugar) that are known or measurable at the "time of prediction". These features are derived directly from the recipe's nutritional information, which is available prior to determining whether the recipe is classified as healthy.
+To ensure the model aligns with real-world prediction scenarios, we carefully selected features (`saturated_fat` and `sugar`) that are known or measurable at the "time of prediction". These features are derived directly from the recipe's nutritional information, which is available prior to determining whether the recipe is classified as healthy.
 
 
 ## Baseline Model
@@ -485,13 +470,18 @@ Since the last model used arbitrary values for our hyperparameters, with 10 for 
 
 Instead of using arbitrary values for hyperparameters, we can create a better model by tuning hyperparameters. Steps of creating our new model involve:
 
-1. Used feature engineering to create 2 new features.
+We used feature engineering to create 2 new features.
 
-    - Feature 1: Interaction Term: Multiply `saturated_fat` by sugar to capture recipes with high values of both.
-    - Feature 2: Binarize `saturated_fat` into "low" and "high" using a threshold (median value) to create a categorical feature.
-    - Transform Existing Features: Quantile transform sugar to make it robust to outliers.
+1.⁠ ⁠Feature 1: Interaction Term (⁠saturated_fat * sugar).
+   This feature captures the combined effect of `⁠ saturated_fat ⁠` and ⁠sugar ⁠on whether a recipe is healthy. Recipes high in both saturated fat and sugar are less likely to be considered healthy, but this relationship might not be strictly additive; it could be multiplicative or more complex. By introducing the interaction term, the model can better capture this non-linear relationship between the two nutritional components, which may provide more meaningful insights into what constitutes a "healthy" recipe.
 
-2. Hyperparameter Tuning.
+2.⁠ ⁠Feature 2: Binarized ⁠ saturated_fat ⁠(Low/High).
+   By binarizing ⁠ saturated_fat ⁠ into "low" and "high" categories using the median value as a threshold, we introduce a categorical feature that simplifies the distinction between recipes with varying levels of saturated fat. This transformation reflects practical dietary guidelines, where saturated fat thresholds are often used to assess healthiness. It also helps the model differentiate between recipes with significantly different health implications due to their fat content.
+
+3.⁠ ⁠Transform Existing Feature: Quantile Transformation on ⁠sugar.  
+   The ⁠ sugar ⁠ feature is transformed using a quantile transformation to make it robust to outliers. Sugar content is often highly skewed in recipe datasets, as some recipes (e.g., desserts) have disproportionately high values. The quantile transformation ensures that these extreme values do not dominate the model's training process, allowing it to focus on meaningful patterns across the majority of the data.
+
+Then we do Hyperparameter Tuning.
 
     Instead of using 10 for our maximum depth and 100 for our number of estimators, we performed hyperparameter tuning using `GridSearchCV` to systematically explore a range of parameter values and identify the combination that yields the best results.
 
