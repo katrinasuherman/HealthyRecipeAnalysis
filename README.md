@@ -182,7 +182,7 @@ We also observed the distribution of the proportion of the saturated fats and th
 <iframe
 src="assets/box_fig.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -195,7 +195,7 @@ The box plot above compares the distribution of saturated fat proportions (Satur
 <iframe
 src="assets/box_fig2.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -207,7 +207,7 @@ From this data set, we observed the relationship between sugar proportion to the
 <iframe
 src="assets/sugar_n_fig.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -253,7 +253,7 @@ The hypotheses and test statistic are as follows:
 <iframe
 src="assets/sat_fat_missing.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -267,7 +267,7 @@ Here we can see that the two distributions does not have similar shapes nor the 
 <iframe
 src="assets/fig_2.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -296,7 +296,7 @@ Plot the distributions of sugar proportions when rating is missing and when rati
 <iframe
 src="assets/sugar_missing.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -311,7 +311,7 @@ We can see that the two distribution have similar shapes. Hence, we chose the ab
 <iframe
 src="assets/fig_3.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -335,7 +335,7 @@ The hypotheses and test statistic are as follows:
 <iframe
 src="assets/fig_4.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -347,7 +347,7 @@ Because the range of the minutes are too significant, we are unable to see certa
 <iframe
 src="assets/fig_5.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -366,7 +366,7 @@ style="margin: 0; padding: 0; display: block;"
 <iframe
 src="assets/fig_6.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -395,7 +395,7 @@ A significance level of 0.05 strikes a balance between rigor and practicality, m
 <iframe
 src="assets/sugar_healthy_nonhealthy.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -407,7 +407,7 @@ We ran a permutation test by shuffling the missingness of rating for 500 times t
 <iframe
 src="assets/fig_7.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -432,7 +432,7 @@ A significance level of 0.05 strikes a balance between rigor and practicality, m
 <iframe
 src="assets/satfats_healthy_nonhealthy.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -451,7 +451,7 @@ We ran a permutation test by shuffling the missingness of rating for 500 times t
 <iframe
 src="assets/fig_8.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -648,7 +648,7 @@ After we run the permutation test, we got a p-value of 0.126.
 <iframe
 src="assets/interactive_permutation_test.html"
 width="800"
-height="600"
+height="500"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
