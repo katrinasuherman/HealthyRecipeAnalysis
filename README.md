@@ -88,7 +88,6 @@ Then, we normalize the nutrition by calories to fairly compare recipes with vary
 
 ![alt text](nutrition_proportion)
 
-
 We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
 
 6. Extracted saturated fat from the nutrition column.
@@ -96,14 +95,12 @@ We then added the Nutrition Proportion per Calorie result for sugar to a new col
 We extracted the saturated fat content, expressed in nutrient proportion per calorie, from `nutrition` column. Based on the U.S. FDA guidelines, A PDV of 100% corresponds to **20** grams of added saturated fat (based on the U.S. FDA guidelines).
 
 We want to convert to nutrient in grams with:
-$$
-\text{Nutrient (grams)} = \left( \frac{\text{PDV}}{100} \right) \times \text{Reference Daily Value (grams)}
-$$
+
+![alt text](nutrient_grams)
+
 Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-$$
-\text{Nutrition Proportion per Calorie} = \frac{\text{Nutrient (grams)}}{\text{Calories}}
-$$
+![alt text](nutrition_proportion)
 
 We then added the Nutrition Proportion per Calorie result for saturated fat to a new column called `saturated_fat`.
 
