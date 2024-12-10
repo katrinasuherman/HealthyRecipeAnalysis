@@ -114,15 +114,13 @@ Since we are not going to utilize all the columns, we will leave other columns a
 
 This is what the few rows of the resulted data frame looks like:
 
-| name                                 |     id |   minutes |   n_ingredients |   rating |   rating_avg | review                                                                                                                                                                                                                                                                                                                                           | is_healthy   |     sugar |   saturated_fat |
-|:-------------------------------------|-------:|----------:|----------------:|---------:|-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------|----------:|----------------:|
-| 1 brownies in the world    best ever | 333281 |        40 |               9 |        4 |            4 | These were pretty good, but took forever to bake.  I would send it ended up being almost an hour!  Even then, the brownies stuck to the foil, and were on the overly moist side and not easy to cut.  They did taste quite rich, though!  Made for My 3 Chefs.                                                                                   | False        | 0.180636  |       0.0274566 |
-| 1 in canada chocolate chip cookies   | 453467 |        45 |              11 |        5 |            5 | Originally I was gonna cut the recipe in half (just the 2 of us here), but then we had a park-wide yard sale, & I made the whole batch & used them as enticements for potential buyers ~ what the hey, a free cookie as delicious as these are, definitely works its magic! Will be making these again, for sure! Thanks for posting the recipe! | False        | 0.177281  |       0.01714   |
-| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | This was one of the best broccoli casseroles that I have ever made.  I made my own chicken soup for this recipe. I was a bit worried about the tsp of soy sauce but it gave the casserole the best flavor. YUM!                                                                                                                                  | False        | 0.0154004 |       0.036961  |
-|                                      |        |           |                 |          |              | The photos you took (shapeweaver) inspired me to make this recipe and it actually does look just like them when it comes out of the oven.                                                                                                                                                                                                        |              |           |                 |
-|                                      |        |           |                 |          |              | Thanks so much for sharing your recipe shapeweaver. It was wonderful!  Going into my family's favorite Zaar cookbook :)                                                                                                                                                                                                                          |              |           |                 |
-| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | I made this for my son's first birthday party this weekend. Our guests INHALED it! Everyone kept saying how delicious it was. I was I could have gotten to try it.                                                                                                                                                                               | False        | 0.0154004 |       0.036961  |
-| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | Loved this.  Be sure to completely thaw the broccoli.  I didn&#039;t and it didn&#039;t get done in time specified.  Just cooked it a little longer though and it was perfect.  Thanks Chef.                                                                                                                                                     | False        | 0.0154004 |       0.036961  |
+| name                                 |     id |   minutes |   n_ingredients |   rating |   rating_avg | is_healthy   |     sugar |   saturated_fat |
+|:-------------------------------------|-------:|----------:|----------------:|---------:|-------------:|:-------------|----------:|----------------:|
+| 1 brownies in the world    best ever | 333281 |        40 |               9 |        4 |            4 | False        | 0.180636  |       0.0274566 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |              11 |        5 |            5 | False        | 0.177281  |       0.01714   |
+| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | False        | 0.0154004 |       0.036961  |
+| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | False        | 0.0154004 |       0.036961  |
+| 412 broccoli casserole               | 306168 |        40 |               9 |        5 |            5 | False        | 0.0154004 |       0.036961  |
 
 Each variables in the data frame above has their own data types.
 ## Column Data Types
@@ -205,6 +203,16 @@ The box plot above illustrates the distribution of sugar proportions (Sugar Prop
 
 ## Interesting Aggregates
 From this data set, we observed the relationship between sugar proportion to the number of ingredients to see if there might be a relationship across recipes. We used the mean, median, minimum, and maximum values for sugar content.
+
+|   ('mean', 'sugar') |   ('median', 'sugar') |   ('min', 'sugar') |   ('max', 'sugar') |
+|--------------------:|----------------------:|-------------------:|-------------------:|
+|           0.0615441 |             0         |                  0 |           0.515504 |
+|           0.124219  |             0.0251295 |                  0 |           0.540247 |
+|           0.137108  |             0.0853443 |                  0 |           0.539977 |
+|           0.129452  |             0.0701193 |                  0 |           0.534442 |
+|           0.109335  |             0.042735  |                  0 |           0.532359 |
+
+We added a visualization of the pivot table to better see the distribution of the pivot table
 <!-- insert plot dist. of sugar and n ingredients -->
 <iframe
 src="assets/sugar_n_fig.html"
