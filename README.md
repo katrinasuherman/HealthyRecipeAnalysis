@@ -160,7 +160,7 @@ For this analysis, we observed the distribution of the proportion of sugar and t
 <iframe
 src="assets/fig_sugar.html"
 width="800"
-height="400"
+height="1000"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
@@ -168,7 +168,7 @@ style="margin: 0; padding: 0; display: block;"
 <iframe
 src="assets/fig_satfat.html"
 width="800"
-height="400"
+height="1000"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
