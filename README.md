@@ -72,39 +72,33 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
     Some recipes have more than one reviews and ratings. That is why we take an average of all the ratings based on the id's recipe.
 
-4. Added `sugar` column.
+4. Calories
+    We extracted the calorie from nutrition column.
+
+5. Added `sugar` column.
 
     The formula for calculating sugar proportion per calorie is:
-
-    \[
-    \text{Sugar Proportion per Calorie} = \frac{\text{(Sugar PDV / 100) * 50}}{\text{Calories}}
-    \]
+    Sugar Proportion per Calorie = ((Sugar PDV / 100) * 50) / Calories
 
     Where:
     - **Sugar PDV**: Percent Daily Value of sugar from the `nutrition` column.
     - **50 grams**: Reference daily value (RDV) for sugar based on FDA guidelines.
     - **Calories**: Total calories for the recipe from the `nutrition` column.
 
-5. Added `saturated_fat` column.
+6. Added `saturated_fat` column.
 
     Similarly, the formula for calculating saturated fat proportion per calorie is:
-
-    \[
-    \text{Saturated Fat Proportion per Calorie} = \frac{\text{(Saturated Fat PDV / 100) * 20}}{\text{Calories}}
-    \]
+    Saturated Fat Proportion per Calorie = ((Saturated Fat PDV / 100) * 20) / Calories
 
     Where:
     - **Saturated Fat PDV**: Percent Daily Value of saturated fat from the `nutrition` column.
     - **20 grams**: Reference daily value (RDV) for saturated fat based on FDA guidelines.
     - **Calories**: Total calories for the recipe from the `nutrition` column.
 
-6. Added `is_healthy` column.
+7. Added `is_healthy` column.
 
     We created a boolean column to identify recipes tagged as "healthy" marking them as `True` or `False` based on their tags.
     We have made sure that the values of the tags that contain "healthy" are only 'healthy' and 'healthy-2'.
-
-7. Calories
-    We extracted the calorie from nutrition column.
 
 Since we are not going to utilize all the columns, we will leave other columns as is and only selected the columns that are most relevant to our questions for display.
 
