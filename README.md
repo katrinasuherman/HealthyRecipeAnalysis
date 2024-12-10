@@ -48,7 +48,6 @@ Doing these steps enable us to create a robust framework, allowing it easier to 
 
 # Data Cleaning and Exploratory Data Analysis
 
----
 ## Data Cleaning
 After we obtained two datasets, we performed a series of data cleaning steps:
 
@@ -96,7 +95,22 @@ Result:
 For this analysis, we observed the distribution of the proportion of sugar and the proportion of saturated fat in a recipe. Based on the two plots, the distribution skewed to the right, indicating that most of the recipes on [food.com](https://www.food.com) have a low proportion of sugar and saturated fats.
 
 <!-- insert plot dist. of sugar proportion -->
+
+<iframe
+  src="assets/file-name.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 <!-- insert plot dist. of sat fat proportion -->
+
+<iframe
+  src="assets/fig_satfat-name.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ## Bivariate Analysis
 We also observed the distribution of the proportion of the saturated fats and the proportion of the sugar of the recipe based on the `'is_healthy'` column.
