@@ -87,12 +87,24 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
 5. Added `saturated_fat` column.
 
-    We extracted the saturated fat content from `nutrition` column and calculated the proportion of saturated fat relative to total calories.
+    Similarly, the formula for calculating saturated fat proportion per calorie is:
+
+    \[
+    \text{Saturated Fat Proportion per Calorie} = \frac{\text{(Saturated Fat PDV / 100) * 20}}{\text{Calories}}
+    \]
+
+    Where:
+    - **Saturated Fat PDV**: Percent Daily Value of saturated fat from the `nutrition` column.
+    - **20 grams**: Reference daily value (RDV) for saturated fat based on FDA guidelines.
+    - **Calories**: Total calories for the recipe from the `nutrition` column.
 
 6. Added `is_healthy` column.
 
     We created a boolean column to identify recipes tagged as "healthy" marking them as `True` or `False` based on their tags.
     We have made sure that the values of the tags that contain "healthy" are only 'healthy' and 'healthy-2'.
+
+7. Calories
+    We extracted the calorie from nutrition column.
 
 Since we are not going to utilize all the columns, we will leave other columns as is and only selected the columns that are most relevant to our questions for display.
 
@@ -257,7 +269,7 @@ Because the two distributions show a similar shape, we chose the absolute differ
 
 We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-We also calculated the observed difference, which is 0.0019, indicated by the red vertical line on the graph. 
+We also calculated the observed difference, which is 0.035, indicated by the red vertical line on the graph. 
     
 Since the p_value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'saturated_fat'`**, which is proportion of saturated fat in the recipe.
 
@@ -303,7 +315,7 @@ We can see that the two distribution does not have similar shape. Hence, we chos
 
 We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-We also calculated the observed statistic, which is 0.0186, indicated by the red vertical line on the graph. 
+We also calculated the observed statistic, which is 0.0032, indicated by the red vertical line on the graph. 
     
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'sugar'`**, which is proportion of sugar in the recipe.
 
@@ -358,7 +370,7 @@ Because the range of the minutes are too significant, we are unable to see certa
 
 The observed statistic of 51.4524 is indicated by the red vertical line on the graph. 
     
-Since the p_value that we found (0.126) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
+Since the p_value that we found (0.124) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
 
 # Hypothesis Testing
 Back to our main research question, which is to investigate if **Recipes Tagged as “Healthy” Tend to Have Significantly Lower Proportion for Saturated Fat or Sugar Compared to Recipes Without this Tag?**
@@ -398,7 +410,7 @@ Based on the plot above, we could see that the two distributions are different. 
     frameborder="0"
     style="margin: 0; padding: 0; display: block;"
 ></iframe>
-The observed statistic of 0.0516 is indicated by the red vertical line on the graph. 
+The observed statistic of 0.047 is indicated by the red vertical line on the graph. 
 
 Since the p-value that we found (1.0) is > 0.05 which is the significance level that we set, **we fail to reject the null hypothesis. Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy."**
 
@@ -439,7 +451,7 @@ We can see that the two distribution does not have similar shape. In contrast, w
     style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-The observed statistic of -0.04128 is indicated by the red vertical line on the graph. 
+The observed statistic of -0.0126 is indicated by the red vertical line on the graph. 
 
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, **we reject the null hypothesis. Recipes tagged as "healthy" does not have the same proportion of saturated fat as recipes not tagged as "healthy"**. This indicates that the proportion of saturated fat in recipes tagged as "healthy" is significantly lower than the proportion of saturated fat in recipes not tagged as "healthy". This result supports the idea that recipes labeled as "healthy" are associated with lower saturated fat content.
 
@@ -483,24 +495,24 @@ Afterwards, the model was trained using an 80-20 train-test split.
 
 | Class        | Precision | Recall | F1-Score | Support  |
 |--------------|-----------|--------|----------|----------|
-| 0            | 0.83      | 0.98   | 0.90     | 149,811  |
-| 1            | 0.78      | 0.21   | 0.34     | 37,732   |
+| 0            | 0.84      | 0.98   | 0.90     | 149,811  |
+| 1            | 0.74      | 0.26   | 0.39     | 37,732   |
 | **Accuracy** | **0.83**  |        |          | 187,543  |
-| **Macro Avg**| 0.81      | 0.60   | 0.62     | 187,543  |
-| **Weighted Avg**| 0.82   | 0.83   | 0.79     | 187,543  |
+| **Macro Avg**| 0.79      | 0.62   | 0.64     | 187,543  |
+| **Weighted Avg**| 0.82   | 0.83   | 0.80     | 187,543  |
 
 ## Test Performance
 
 | Class        | Precision | Recall | F1-Score | Support  |
 |--------------|-----------|--------|----------|----------|
-| 0            | 0.83      | 0.98   | 0.90     | 37,493   |
-| 1            | 0.73      | 0.21   | 0.32     | 9,393    |
+| 0            | 0.84      | 0.97   | 0.90     | 37,493   |
+| 1            | 0.70      | 0.25   | 0.37     | 9,393    |
 | **Accuracy** | **0.83**  |        |          | 46,886   |
-| **Macro Avg**| 0.78      | 0.59   | 0.61     | 46,886   |
-| **Weighted Avg**| 0.81   | 0.83   | 0.78     | 46,886   |
+| **Macro Avg**| 0.77      | 0.61   | 0.64     | 46,886   |
+| **Weighted Avg**| 0.81   | 0.83   | 0.80     | 46,886   |
 
 
-The baseline model achieves an overall accuracy of 83% on both training and test datasets, but the F1-scores reveal significant class imbalance. For class 0 ('not healthy'), the F1-score is high (0.90) on both sets, indicating strong precision and recall. However, for class 1 (healthy), the F1-score is much lower (0.32 on the test set), reflecting poor recall and modest precision. This imbalance suggests the model struggles to correctly identify healthy recipes and favors the majority class.
+The baseline model achieves an overall accuracy of 83% on both training and test datasets, but the F1-scores reveal significant class imbalance. For class 0 (not healthy), the F1-score is high (0.90) on both sets, indicating strong precision and recall. However, for class 1 (healthy), the F1-score is much lower (0.37 on the test set), reflecting poor recall and modest precision. This imbalance suggests the model struggles to correctly identify healthy recipes and favors the majority class. Improving the F1-score for class 1 through techniques like oversampling, class weight adjustments, or feature engineering is essential to achieving balanced performance.
 
 ## Final Model
 
@@ -538,7 +550,7 @@ Then we do Hyperparameter Tuning.
 | Class | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
 | 0     | 0.99      | 1.00   | 1.00     | 149,811 |
-| 1     | 0.99      | 0.98   | 0.98     | 37,732  |
+| 1     | 0.99      | 0.97   | 0.98     | 37,732  |
 | **Accuracy** | **0.99** |        |          | 187,543 |
 | **Macro Avg** | 0.99      | 0.99   | 0.99     | 187,543 |
 | **Weighted Avg** | 0.99   | 0.99   | 0.99     | 187,543 |
@@ -548,15 +560,15 @@ Then we do Hyperparameter Tuning.
 | Class | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
 | 0     | 0.96      | 0.97   | 0.97     | 37,493  |
-| 1     | 0.89      | 0.85   | 0.87     | 9,393   |
+| 1     | 0.88      | 0.85   | 0.87     | 9,393   |
 | **Accuracy** | **0.95** |        |          | 46,886  |
 | **Macro Avg** | 0.92      | 0.91   | 0.92     | 46,886  |
 | **Weighted Avg** | 0.95   | 0.95   | 0.95     | 46,886  |
 
 
-After fitting, make predictions, and evaluating the model based on the best estimator, we have found that the best maximum depth `max_depth` for our model is 55 and number of estimators or `n_estimators` is 150.
+After fitting, make predictions, and evaluating the model based on the best estimator, we have found that the best maximum depth `max_depth` for our model is 55 and number of estimators or `n_estimators` is 180.
 
-The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with well-balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores (0.99 for both classes), which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (`max_depth` of 50 and 150 estimators) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
+The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with a more balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores, which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (max_depth of 55 and 160 estimators) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
 
 ## Fairness Analysis
 <!-- Clearly state your choice of Group X and Group Y, your evaluation metric, your null and alternative hypotheses, your choice of test statistic and significance level, the resulting p-value, and your conclusion.
@@ -588,7 +600,7 @@ Optional: Embed a visualization related to your permutation test in your website
 
 3. The chosen evaluation metric for this fairness analysis is **precision**, which measures the proportion of true positives among all positive predictions. Precision is particularly suitable for this context because it focuses on the correctness of positive predictions, such as labeling a recipe as "healthy," and minimizes false positives. This is important because false positives, where unhealthy recipes are incorrectly classified as healthy, can mislead users and have critical implications, especially in health-related scenarios. 
 
-    The precision for high sugar and low sugar are 0.8827 and 0.8938, respectively. 
+    The precision for high sugar and low sugar are 0.8872 and 0.8794, respectively. 
 
 4. Now we will run a permutation test to evaluate whether the difference in precision between the high-sugar and low-sugar groups is statistically significant. 
 
@@ -600,10 +612,10 @@ Optional: Embed a visualization related to your permutation test in your website
     - Significance level: 0.05
 
 5. Calculate the observed difference.
-   Since we are using difference of precision between the high-sugar and low-sugar groups, we got around -0.01 as our observed difference. 
+   Since we are using difference of precision between the high-sugar and low-sugar groups, we got around 0.0078 as our observed difference. 
 
 6. Run a permutation test
-    After we run the permutation test, we got a p-value of 0.933. 
+    After we run the permutation test, we got a p-value of 0.13. 
 
     <!-- graph -->
 <iframe
@@ -613,7 +625,4 @@ Optional: Embed a visualization related to your permutation test in your website
     frameborder="0"
     style="margin: 0; padding: 0; display: block;"
 ></iframe>
-In conclusion, the p-value obtained from the permutation test is **0.965** which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
-
-
-
+In conclusion, the p-value obtained from the permutation test is **0.13** which is greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
