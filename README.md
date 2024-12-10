@@ -81,6 +81,10 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 Since we are not going to utilize all the columns, we will leave other columns as is.
 This is what the few rows of the resulted data frame looks like:
 
+## Dataset Preview
+
+<div style="overflow-x: auto;">
+
 | name                              | id     | minutes | contributor_id | submitted   | tags                              | nutrition                  | n_steps | steps                                     | description                      | ingredients                          | n_ingredients | user_id   | recipe_id | date       | rating | review                                       | rating_avg | is_healthy | sugar | saturated_fat |
 |-----------------------------------|--------|---------|----------------|-------------|----------------------------------|----------------------------|---------|-------------------------------------------|----------------------------------|-------------------------------------|---------------|-----------|-----------|------------|--------|---------------------------------------------|------------|------------|-------|---------------|
 | 1 brownies in the world best ever | 333281 | 40      | 985201         | 2008-10-27  | ['60-minutes-or-less', 'time...']| [138.4, 10.0, 50.0, ...]  | 10      | ['heat the oven to 350f and arrange...'] | these are the most; chocolatey...| ['bittersweet chocolate', 'uns...'] | 9             | 3.87e+05  | 333281.0  | 2008-11-19 | 4.0    | These were pretty good, but took forever... | 4.0        | False      | 0.22  | 0.08          |
@@ -88,6 +92,9 @@ This is what the few rows of the resulted data frame looks like:
 | 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 2.98e+04  | 306168.0  | 2008-12-31 | 5.0    | This was one of the best broccoli casse... | 5.0        | False      | 0.02  | 0.11          |
 | 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 1.20e+06  | 306168.0  | 2009-04-13 | 5.0    | I made this for my son's first birthday... | 5.0        | False      | 0.02  | 0.11          |
 | 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 7.69e+05  | 306168.0  | 2013-08-02 | 5.0    | Loved this. Be sure to completely thaw... | 5.0        | False      | 0.02  | 0.11          |
+
+</div>
+
 
 Each variables in the data frame above has their own data types.
 ## Column Data Types
@@ -124,10 +131,11 @@ For this analysis, we observed the distribution of the proportion of sugar and t
 
 <!-- insert plot dist. of sugar proportion -->
 <iframe
-  src="assets/file-name.html"
+  src="assets/file_sugar.html"
   width="800"
   height="600"
   frameborder="0"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 <!-- insert plot dist. of sat fat proportion -->
 <iframe
@@ -135,6 +143,7 @@ For this analysis, we observed the distribution of the proportion of sugar and t
   width="800"
   height="600"
   frameborder="0"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 ## Bivariate Analysis
@@ -148,6 +157,7 @@ We also observed the distribution of the proportion of the saturated fats and th
   width="800"
   height="600"
   frameborder="0"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 The box plot above compares the distribution of saturated fat proportions (PDV) between recipes tagged as "healthy" (true) and those not tagged as "healthy" (false). This suggests that "healthy" recipes tend to have less saturated fat on average.
@@ -160,6 +170,7 @@ The box plot above compares the distribution of saturated fat proportions (PDV) 
   width="800"
   height="600"
   frameborder="0"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 This box plot suggests that "healthy" recipes may sometimes include higher sugar content. 
 
@@ -171,6 +182,7 @@ From this data set, we observed the relationship between sugar proportion to the
   width="800"
   height="600"
   frameborder="0"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 Recipes with fewer ingredients tend to have higher sugar proportions on average.
 This suggests that simpler recipes (fewer ingredients) might often be desserts or sugar-rich recipes like cookies.
@@ -213,6 +225,7 @@ The hypotheses and test statistic are as follows:
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 Because the two distributions show a similar shape, we chose the absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing and non-missing ratings as the test statistic.
 
@@ -225,6 +238,7 @@ Because the two distributions show a similar shape, we chose the absolute differ
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
@@ -254,6 +268,7 @@ The hypotheses and test statistic are as follows:
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 We can see that the two distribution does not have similar shape. Hence, we chose K-S test as our test statistic.
@@ -267,6 +282,7 @@ We can see that the two distribution does not have similar shape. Hence, we chos
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
@@ -290,6 +306,7 @@ The hypotheses and test statistic are as follows:
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 Because the range of the minutes are too significant, we are unable to see certain minutes on the graph. To better visualize the distribution and identify outliers, we can apply log transformation. Because there are values of 0 that exist in our `'minutes'` data, we use `log1p(x)` in Python, which computes `log(1+x)` to handle zeros.
@@ -301,6 +318,7 @@ Because the range of the minutes are too significant, we are unable to see certa
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 1. Choosing a test statistic. 
@@ -318,6 +336,7 @@ Because the range of the minutes are too significant, we are unable to see certa
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
     The observed statistic of 51.4524 is indicated by the red vertical line on the graph. 
@@ -345,6 +364,7 @@ The hypotheses and test statistic are as follows:
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 Based on the plot above, we could see that the two distributions are different. But we want to know which recipe has a lower proportion so we still chose the difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
 
@@ -358,6 +378,7 @@ Based on the plot above, we could see that the two distributions are different. 
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 The observed statistic of 0.0516 is indicated by the red vertical line on the graph. 
 
@@ -379,6 +400,7 @@ The hypotheses and test statistic are as follows:
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 We can see that the two distribution does not have similar shape. In contrast, we still chose the proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy" to determine which recipe has a lower proportion of saturated fats. 
@@ -393,6 +415,7 @@ We can see that the two distribution does not have similar shape. In contrast, w
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 The observed statistic of -0.04128 is indicated by the red vertical line on the graph. 
@@ -567,9 +590,10 @@ Optional: Embed a visualization related to your permutation test in your website
     width="800"
     height="600"
     frameborder="0"
+    style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-    In conclusion, the p-value obtained from the permutation test is **0.965**, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
+In conclusion, the p-value obtained from the permutation test is **0.965**, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
 
 
 
