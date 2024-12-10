@@ -74,6 +74,11 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
 4. Added `sugar` column.
 
+    We extracted the sugar content from the `nutrition` column and calculated the proportion of sugar relative to total calories using the formula:  
+    $$
+    \text{Sugar Proportion per Calorie} = \frac{\text{(Sugar PDV / 100) * 50}}{\text{Calories}}
+    $$  
+    This normalization accounts for varying calorie counts across recipes, enabling a fair comparison of sugar density between recipes.
     We extracted the sugar content from `nutrition` column and calculated the proportion of sugar relative to total calories.
 
 5. Added `saturated_fat` column.
