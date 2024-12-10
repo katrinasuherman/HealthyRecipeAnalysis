@@ -4,6 +4,9 @@ margin-bottom: 10px;
 }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
 
 # Do "Healthy" Tagged Recipes Contain Significantly Lower Proportions of Saturated Fat and Sugar Compared to Untagged Recipes?
 
@@ -79,12 +82,11 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
 We want to convert to nutrient in grams with:
 
-![Equation](https://latex.codecogs.com/png.latex?Nutrient%20(grams)%20%3D%20%5Cleft(%20%5Cfrac%7BPDV%7D%7B100%7D%20%5Cright)%20%5Ctimes%20Reference%20Daily%20Value%20(grams))
-
+![alt text](nutrient_grams)
 
 Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-![Equation](https://latex.codecogs.com/png.latex Nutrition%20Proportion%20per%20Calorie%20%3D%20%5Cfrac%7BNutrient%20(grams)%7D%7BCalories%7D)
+![alt text](nutrition_proportion)
 
 
 We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
