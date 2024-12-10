@@ -78,22 +78,18 @@ After we obtained two datasets, we performed a series of data cleaning steps:
     We created a boolean column to identify recipes tagged as "healthy" marking them as `True` or `False` based on their tags.
     We have made sure that the values of the tags that contain "healthy" are only 'healthy' and 'healthy-2'.
 
-Since we are not going to utilize all the columns, we will leave other columns as is.
+Since we are not going to utilize all the columns, we will leave other columns as is and only selected the columns that are most relevant to our questions for display.
+
 This is what the few rows of the resulted data frame looks like:
 
-## Dataset Preview
+| name                                | id     | minutes | contributor_id | submitted   | date       | rating | review                                      | rating_avg | is_healthy |
+|-------------------------------------|--------|---------|----------------|-------------|------------|--------|---------------------------------------------|------------|------------|
+| 1 brownies in the world best ever   | 333281 | 40      | 985201         | 2008-10-27  | 2008-11-19 | 4.0    | These were pretty good, but took forever...| 4.0        | False      |
+| 1 in canada chocolate chip cookies  | 453467 | 45      | 1848091        | 2011-04-11  | 2012-01-26 | 5.0    | Originally I was gonna cut the recipe in...| 5.0        | False      |
+| 412 broccoli casserole              | 306168 | 40      | 50969          | 2008-05-30  | 2008-12-31 | 5.0    | This was one of the best broccoli casse... | 5.0        | False      |
+| 412 broccoli casserole              | 306168 | 40      | 50969          | 2008-05-30  | 2009-04-13 | 5.0    | I made this for my son's first birthday... | 5.0        | False      |
+| 412 broccoli casserole              | 306168 | 40      | 50969          | 2008-05-30  | 2013-08-02 | 5.0    | Loved this. Be sure to completely thaw...  | 5.0        | False      |
 
-<div style="overflow-x: auto;">
-
-| name                              | id     | minutes | contributor_id | submitted   | tags                              | nutrition                  | n_steps | steps                                     | description                      | ingredients                          | n_ingredients | user_id   | recipe_id | date       | rating | review                                       | rating_avg | is_healthy | sugar | saturated_fat |
-|-----------------------------------|--------|---------|----------------|-------------|----------------------------------|----------------------------|---------|-------------------------------------------|----------------------------------|-------------------------------------|---------------|-----------|-----------|------------|--------|---------------------------------------------|------------|------------|-------|---------------|
-| 1 brownies in the world best ever | 333281 | 40      | 985201         | 2008-10-27  | ['60-minutes-or-less', 'time...']| [138.4, 10.0, 50.0, ...]  | 10      | ['heat the oven to 350f and arrange...'] | these are the most; chocolatey...| ['bittersweet chocolate', 'uns...'] | 9             | 3.87e+05  | 333281.0  | 2008-11-19 | 4.0    | These were pretty good, but took forever... | 4.0        | False      | 0.22  | 0.08          |
-| 1 in canada chocolate chip cookies| 453467 | 45      | 1848091        | 2011-04-11  | ['60-minutes-or-less', 'time...']| [595.1, 46.0, 211.0, ...] | 12      | ['preheat oven the 350 degrees f', ...] | this is the recipe that we use... | ['white sugar', 'brown sugar', ...] | 11            | 4.25e+05  | 453467.0  | 2012-01-26 | 5.0    | Originally I was gonna cut the recipe in... | 5.0        | False      | 0.22  | 0.05          |
-| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 2.98e+04  | 306168.0  | 2008-12-31 | 5.0    | This was one of the best broccoli casse... | 5.0        | False      | 0.02  | 0.11          |
-| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 1.20e+06  | 306168.0  | 2009-04-13 | 5.0    | I made this for my son's first birthday... | 5.0        | False      | 0.02  | 0.11          |
-| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | ['60-minutes-or-less', 'time...']| [194.8, 20.0, 6.0, ...]   | 6       | ['preheat oven to 350 degrees', ...]      | since there are already 411 re...| ['frozen broccoli cuts', 'crea...'] | 9             | 7.69e+05  | 306168.0  | 2013-08-02 | 5.0    | Loved this. Be sure to completely thaw... | 5.0        | False      | 0.02  | 0.11          |
-
-</div>
 
 
 Each variables in the data frame above has their own data types.
@@ -131,7 +127,7 @@ For this analysis, we observed the distribution of the proportion of sugar and t
 
 <!-- insert plot dist. of sugar proportion -->
 <iframe
-  src="assets/file_sugar.html"
+  src="assets/fig_sugar.html"
   width="800"
   height="600"
   frameborder="0"
@@ -215,8 +211,10 @@ The hypotheses and test statistic are as follows:
 - Test Statistic: The absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
 - Significance Level: 0.05
 
+1. Choosing a significance level.
+    A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
 
-1. Choosing a test statistic. 
+2. Choosing a test statistic. 
     Firstly, we added a new column `rating_missing` to see if the `rating` is missing or not.
 
     <!-- insert plot Distributions of saturated fat proportions when rating is missing or not -->
@@ -229,7 +227,7 @@ The hypotheses and test statistic are as follows:
 ></iframe>
 Because the two distributions show a similar shape, we chose the absolute difference of mean in the proportion of saturated fat of the distribution of the group without missing and non-missing ratings as the test statistic.
 
-2. Run a permutation test and calculate the observed difference.
+3. Run a permutation test and calculate the observed difference.
 
     <!-- insert plot Empirical Distribution of the Absolute Difference in Saturated Fat-->
 
@@ -258,8 +256,10 @@ The hypotheses and test statistic are as follows:
 - Test Statistic: K-S test statistic of the two groups.
 - Significance Level: 0.05
 
+1. Choosing a significance level.
+    A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
 
-1. Choosing a test statistic.
+2. Choosing a test statistic. 
     Plot the distributions of sugar proportions when rating is missing and when rating is not missing.
     <!-- insert plot Distributions of sugar proportions when rating is missing or not-->
 
@@ -273,7 +273,7 @@ The hypotheses and test statistic are as follows:
 
 We can see that the two distribution does not have similar shape. Hence, we chose K-S test as our test statistic.
 
-2. Run a permutation test and calculate the observed difference.
+3. Run a permutation test and calculate the observed difference.
 
     <!-- insert plot Empirical Distribution of the K-S Statistic of Sugar Proportion-->
 
@@ -291,7 +291,7 @@ We also calculated the observed statistic, which is 0.0186, indicated by the red
     
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'sugar'`**, which is proportion of sugar in the recipe.
 
-3. Third, **we investigated if the missingness in the `'rating'` depends on the minutes column**. 
+Third, **we investigated if the missingness in the `'rating'` depends on the minutes column**. 
 
 The hypotheses and test statistic are as follows:
 
@@ -321,12 +321,13 @@ Because the range of the minutes are too significant, we are unable to see certa
     style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-1. Choosing a test statistic. 
+1. Choosing a significance level.
+    A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
 
+2. Choosing a test statistic. 
     Because the two distributions are roughly similar after the log transformation, we will use absolute difference in means as our test-statistic.
 
-2. Run a permutation test and calculate the observed difference.
-
+3. Run a permutation test and calculate the observed difference.
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
     <!-- insert plot after log transformation-->
@@ -339,7 +340,7 @@ Because the range of the minutes are too significant, we are unable to see certa
     style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-    The observed statistic of 51.4524 is indicated by the red vertical line on the graph. 
+The observed statistic of 51.4524 is indicated by the red vertical line on the graph. 
     
 Since the p_value that we found (0.126) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
 
@@ -357,7 +358,10 @@ The hypotheses and test statistic are as follows:
 - Test Statistic: The difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
 - Significance Level: 0.05
 
-1. Choosing a test statistic.
+1. Choosing a significance level.
+    A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
+
+2. Choosing a test statistic. 
     <!-- insert plot -->
 <iframe
     src="assets/sugar_healthy_nonhealthy.html"
@@ -368,9 +372,7 @@ The hypotheses and test statistic are as follows:
 ></iframe>
 Based on the plot above, we could see that the two distributions are different. But we want to know which recipe has a lower proportion so we still chose the difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
 
-
-2. Run a permutation test and calculate the observed difference.
-
+3. Run a permutation test and calculate the observed difference.
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
     <!-- insert plot -->
 <iframe
@@ -393,7 +395,10 @@ The hypotheses and test statistic are as follows:
 - Test Statistic: proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy"
 - Significance Level: 0.05
 
-1. Choosing a test statistic.
+1. Choosing a significance level.
+    A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
+
+2. Choosing a test statistic. 
     <!-- insert plot -->
 <iframe
     src="assets/satfats_healthy_nonhealthy.html"
@@ -405,7 +410,7 @@ The hypotheses and test statistic are as follows:
 
 We can see that the two distribution does not have similar shape. In contrast, we still chose the proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy" to determine which recipe has a lower proportion of saturated fats. 
 
-2. Run a permutation test and calculate the observed difference.
+3. Run a permutation test and calculate the observed difference.
 
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
@@ -585,15 +590,19 @@ Optional: Embed a visualization related to your permutation test in your website
     After we run the permutation test, we got a p-value of 0.933. 
 
     <!-- graph -->
-<iframe
+<div style="margin: 0; padding: 0; text-align: center;">
+  <iframe
     src="assets/interactive_permutation_test.html"
     width="800"
     height="600"
     frameborder="0"
     style="margin: 0; padding: 0; display: block;"
-></iframe>
-
-In conclusion, the p-value obtained from the permutation test is **0.965**, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
+  ></iframe>
+</div>
+<p style="margin-top: 10px; text-align: justify;">
+  In conclusion, the p-value obtained from the permutation test is <strong>0.965</strong>, which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model’s precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
+</p>
+<!-- In conclusion, the p-value obtained from the permutation test is **0.965** which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute. -->
 
 
 
