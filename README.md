@@ -365,7 +365,7 @@ style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 The observed statistic of 51.4524 is indicated by the red vertical line on the graph.
-Since the p_value that we found (0.126) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
+Since the p_value that we found (0.136) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
 
 # Hypothesis Testing
 Back to our main research question, which is to investigate if **Recipes Tagged as “Healthy” Tend to Have Significantly Lower Proportion for Saturated Fat or Sugar Compared to Recipes Without this Tag?**
@@ -636,7 +636,7 @@ Optional: Embed a visualization related to your permutation test in your website
 Since we are using difference of precision between the high-sugar and low-sugar groups, we got around 0.007 as our observed difference.
 
 6. Run a permutation test
-After we run the permutation test, we got a p-value of 0.126.
+After we run the permutation test, we got a p-value of 0.168.
 
 <!-- graph -->
 <iframe
@@ -646,4 +646,4 @@ height="550"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
-In conclusion, the p-value obtained from the permutation test is **0.965** which is much greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
+In conclusion, the p-value obtained from the permutation test is **0.168** which is greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
