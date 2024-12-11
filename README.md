@@ -267,7 +267,7 @@ style="margin: 0; padding: 0; display: block;"
 
     We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-We also calculated the observed difference, which is 0.034, indicated by the red vertical line on the graph.
+We also calculated the observed difference, which is 0.035, indicated by the red vertical line on the graph.
 Since the p_value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'saturated_fat'`**, which is proportion of saturated fat in the recipe.
 
 Second, **we investigated if the missingness in the `'rating'` depends on the proportion of the sugar in a recipe as indicated in the `'sugar'` column**.
@@ -311,7 +311,7 @@ style="margin: 0; padding: 0; display: block;"
 
 We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
-We also calculated the observed statistic, which is 0.0031, indicated by the red vertical line on the graph.
+We also calculated the observed statistic, which is 0.0032, indicated by the red vertical line on the graph.
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'sugar'`**, which is proportion of sugar in the recipe.
 
 Third, **we investigated if the missingness in the `'rating'` depends on the minutes column**.
@@ -404,7 +404,7 @@ height="550"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
-The observed statistic of 0.0470 is indicated by the red vertical line on the graph.
+The observed statistic of 0.047 is indicated by the red vertical line on the graph.
 
 Since the p-value that we found (1.0) is > 0.05 which is the significance level that we set, **we fail to reject the null hypothesis. Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy."**
 
@@ -450,7 +450,7 @@ style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 
-The observed statistic of -0.04128 is indicated by the red vertical line on the graph.
+The observed statistic of -0.0126 is indicated by the red vertical line on the graph.
 
 
 Since the p-value that we found (0.0) is <= 0.05 which is the significance level that we set, **we reject the null hypothesis. Recipes tagged as "healthy" does not have the same proportion of saturated fat as recipes not tagged as "healthy"**. This indicates that the proportion of saturated fat in recipes tagged as "healthy" is significantly lower than the proportion of saturated fat in recipes not tagged as "healthy". This result supports the idea that recipes labeled as "healthy" are associated with lower saturated fat content.
@@ -586,7 +586,7 @@ A 3-fold cross-validation was performed, splitting the training data into three 
 
 After fitting, make predictions, and evaluating the model based on the best estimator, we have found that the best maximum depth `max_depth` for our model is 40 and number of estimators or `n_estimators` is 180.
 
-The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with a more balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores, which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (`max_depth` of 55 and 140 `n_estimators`) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
+The final model demonstrates significant improvement over the baseline, achieving an overall test accuracy of 95% with a more balanced performance across both classes. On the training set, the model shows near-perfect precision, recall, and F1-scores, which, while impressive, may indicate slight overfitting. On the test set, the model performs strongly for class 0 (not healthy), with an F1-score of 0.97, and for class 1 (healthy), with an F1-score of 0.87, marking a substantial improvement in identifying the minority class. The optimized hyperparameters (`max_depth` of 40 and 180 `n_estimators`) and the inclusion of engineered features. Overall, the final model is robust, with enhanced ability to classify both healthy and non-healthy recipes, making it a well-rounded and reliable improvement.
 
 
 ## Fairness Analysis
