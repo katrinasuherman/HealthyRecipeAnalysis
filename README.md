@@ -250,7 +250,7 @@ height="550"
 frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
-    Here we can see that the two distributions does not have similar shapes nor the same center. Hence, we can choose the test statistic as the difference in means or the K-S statistic. In this case, we chose the K-S statistic.
+Here we can see that the two distributions does not have similar shapes nor the same center. Hence, we can choose the test statistic as the difference in means or the K-S statistic. In this case, we chose the K-S statistic.
 
 
 - Run a permutation test and calculate the observed difference.
@@ -265,7 +265,7 @@ frameborder="0"
 style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-    We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
+We ran a permutation test by shuffling the missingness of rating for 500 times to collect 500 simulating mean differences in the two distributions.
 
 We also calculated the observed difference, which is 0.035, indicated by the red vertical line on the graph.
 Since the p_value that we found (0.0) is <= 0.05 which is the significance level that we set, we reject the null hypothesis. **The missingness of `'rating'` does depend on the `'saturated_fat'`**, which is proportion of saturated fat in the recipe.
@@ -365,7 +365,7 @@ style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 The observed statistic of 51.4524 is indicated by the red vertical line on the graph.
-Since the p_value that we found (0.136) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
+Since the p-value that we found (0.136) is > 0.05 which is the significance level that we set, we fail to reject the null hypothesis. **The missingness of `'rating'` does not depend on the cooking time (`'minutes'`)**, which is proportion of saturated fat in the recipe.
 
 # Hypothesis Testing
 Back to our main research question, which is to investigate if **Recipes Tagged as “Healthy” Tend to Have Significantly Lower Proportion for Saturated Fat or Sugar Compared to Recipes Without this Tag?**
@@ -375,10 +375,10 @@ Since this involves two variables (saturated fat and sugar), we will conduct sep
 ### 1. "Healthy" Recipes and Sugar Proportion
 
 The hypotheses and test statistic are as follows:
-**Null hypothesis**: Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy".
-**Alternate Hypothesis**: Recipes tagged as "healthy" have a significantly lower proportion of sugar compared to recipes not tagged as "healthy".
-**Test Statistic**: The difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
-**Significance Level**: 0.05
+- **Null hypothesis**: Recipes tagged as "healthy" have the same proportion of sugar as recipes not tagged as "healthy".
+- **Alternate Hypothesis**: Recipes tagged as "healthy" have a significantly lower proportion of sugar compared to recipes not tagged as "healthy".
+- **Test Statistic**: The difference between the mean proportion of sugar in recipes tagged as "healthy" and the mean proportion of sugar in recipes not tagged as "healthy".
+- **Significance Level**: 0.05
 
 - Choosing a significance level.
 A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
@@ -411,10 +411,10 @@ Since the p-value that we found (1.0) is > 0.05 which is the significance level 
 ### 2. "Healthy" Recipes and Saturated Fat Proportion
 The hypotheses and test statistic are as follows:
 
-**Null hypothesis**: Recipes tagged as "healthy" have the same proportion of saturated fat as recipes not tagged as "healthy".
-**Alternate Hypothesis**: Recipes tagged as "healthy" have a significantly lower proportion of saturated fat compared to recipes not tagged as "healthy".
-**Test Statistic**: proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy".
-**Significance Level**: 0.05
+- **Null hypothesis**: Recipes tagged as "healthy" have the same proportion of saturated fat as recipes not tagged as "healthy".
+- **Alternate Hypothesis**: Recipes tagged as "healthy" have a significantly lower proportion of saturated fat compared to recipes not tagged as "healthy".
+- **Test Statistic**: proportion of saturated fat as recipes tagged as "healthy" - proportion of saturated fat as recipes not tagged as "healthy".
+- **Significance Level**: 0.05
 
 - Choosing a significance level.
 A significance level of 0.05 strikes a balance between rigor and practicality, minimizing the chance of incorrectly rejecting the null hypothesis while maintaining sensitivity to meaningful differences.
@@ -544,7 +544,7 @@ Instead of using arbitrary values for hyperparameters, we can create a better mo
 
 We used feature engineering to create 2 new features.
 
-1.⁠ ⁠Feature 1: Interaction Term (⁠saturated_fat * sugar).
+1.⁠ ⁠Feature 1: Interaction Term (`⁠saturated_fat * sugar`).
     This feature captures the combined effect of `⁠ saturated_fat ⁠` and ⁠sugar ⁠on whether a recipe is healthy. Recipes high in both saturated fat and sugar are less likely to be considered healthy, but this relationship might not be strictly additive; it could be multiplicative or more complex. By introducing the interaction term, the model can better capture this non-linear relationship between the two nutritional components, which may provide more meaningful insights into what constitutes a "healthy" recipe.
 
 2.⁠ ⁠Feature 2: Binarized ⁠ saturated_fat ⁠(Low/High).
@@ -602,21 +602,21 @@ Optional: Embed a visualization related to your permutation test in your website
 
 <!-- insert dataframe of prediction -->
 
-    | Index | saturated_fat | sugar | sugar_group | prediction |
-    |---------|---------------|----------|-------------|------------|
-    | 44111 | 3.91e-03 | 2.44e-02 | low sugar | 1 |
-    | 139442 | 3.91e-02 | 4.60e-02 | high sugar | 0 |
-    | 46961 | 1.65e-02 | 3.11e-02 | low sugar | 0 |
-    | 130648 | 5.82e-03 | 8.72e-02 | high sugar | 0 |
-    | 82361 | 2.57e-03 | 2.09e-01 | high sugar | 0 |
-    | ... | ... | ... | ... | ... |
-    | 127869 | 0.00e+00 | 0.00e+00 | low sugar | 0 |
-    | 219764 | 5.21e-03 | 1.88e-02 | low sugar | 0 |
-    | 114825 | 1.21e-02 | 7.55e-03 | low sugar | 0 |
-    | 82261 | 0.00e+00 | 0.00e+00 | low sugar | 0 |
-    | 213245 | 4.02e-02 | 1.27e-01 | high sugar | 0 |
+| Index | saturated_fat | sugar | sugar_group | prediction |
+|---------|---------------|----------|-------------|------------|
+| 44111 | 3.91e-03 | 2.44e-02 | low sugar | 1 |
+| 139442 | 3.91e-02 | 4.60e-02 | high sugar | 0 |
+| 46961 | 1.65e-02 | 3.11e-02 | low sugar | 0 |
+| 130648 | 5.82e-03 | 8.72e-02 | high sugar | 0 |
+| 82361 | 2.57e-03 | 2.09e-01 | high sugar | 0 |
+| ... | ... | ... | ... | ... |
+| 127869 | 0.00e+00 | 0.00e+00 | low sugar | 0 |
+| 219764 | 5.21e-03 | 1.88e-02 | low sugar | 0 |
+| 114825 | 1.21e-02 | 7.55e-03 | low sugar | 0 |
+| 82261 | 0.00e+00 | 0.00e+00 | low sugar | 0 |
+| 213245 | 4.02e-02 | 1.27e-01 | high sugar | 0 |
 
-    **Total Rows**: 46,886
+**Total Rows**: 46,886
 
 3. The chosen evaluation metric for this fairness analysis is **precision**. 
     It measures the proportion of true positives among all positive predictions. Precision is particularly suitable for this context because it focuses on the correctness of positive predictions, such as labeling a recipe as "healthy," and minimizes false positives. This is important because false positives, where unhealthy recipes are incorrectly classified as healthy, can mislead users and have critical implications, especially in health-related scenarios.
