@@ -80,35 +80,34 @@ After we obtained two datasets, we performed a series of data cleaning steps:
     We extracted the sugar content, expressed in nutrient proportion per calorie, from `nutrition` column. Based on the U.S. FDA guidelines, A PDV of 100% corresponds to **50** grams of added sugar (based on the U.S. FDA guidelines).
 
 
-We want to convert to nutrient in grams with:
+    We want to convert to nutrient in grams with:
 
-![alt text](assets/nutrient_grams)
+    ![alt text](assets/nutrient_grams.png)
 
-Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
+    Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-![alt text](assets/nutrition_proportion)
+    ![alt text](assets/nutrition_proportion.png)
 
-We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
+    We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
 
 6. Extracted saturated fat from the nutrition column.
 
-We extracted the saturated fat content, expressed in nutrient proportion per calorie, from `nutrition` column. Based on the U.S. FDA guidelines, A PDV of 100% corresponds to **20** grams of added saturated fat (based on the U.S. FDA guidelines).
+    We extracted the saturated fat content, expressed in nutrient proportion per calorie, from `nutrition` column. Based on the U.S. FDA guidelines, A PDV of 100% corresponds to **20** grams of added saturated fat (based on the U.S. FDA guidelines).
 
-We want to convert to nutrient in grams with:
+    We want to convert to nutrient in grams with:
 
-![alt text](assets/nutrient_grams)
-
-
-Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
+    ![alt text](assets/nutrient_grams.png)
 
 
-![alt text](assets/nutrition_proportion)
+    Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-We then added the Nutrition Proportion per Calorie result for saturated fat to a new column called `saturated_fat`.
+    ![alt text](assets/nutrition_proportion.png)
+
+    We then added the Nutrition Proportion per Calorie result for saturated fat to a new column called `saturated_fat`.
 
 7. Replacing null values in `sugar` and `saturated_fat` columns.
 
-After using the formula, we can see that there are 102 null values from 0 which happens when the recipe has 0 calorie. As a result, we will replace the null values with 0 to make the analysis more accurate.
+    After using the formula, we can see that there are 102 null values from 0 which happens when the recipe has 0 calorie. As a result, we will replace the null values with 0 to make the analysis more accurate.
 
 Since we are not going to utilize all the columns, we will leave other columns as is and only selected the columns that are most relevant to our questions for display.
 
