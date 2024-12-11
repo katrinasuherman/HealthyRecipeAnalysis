@@ -82,11 +82,11 @@ After we obtained two datasets, we performed a series of data cleaning steps:
 
 We want to convert to nutrient in grams with:
 
-![alt text](nutrient_grams)
+![alt text](assets/nutrient_grams)
 
 Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-![alt text](nutrition_proportion)
+![alt text](assets/nutrition_proportion)
 
 We then added the Nutrition Proportion per Calorie result for sugar to a new column called `sugar`.
 
@@ -96,11 +96,13 @@ We extracted the saturated fat content, expressed in nutrient proportion per cal
 
 We want to convert to nutrient in grams with:
 
-![alt text](nutrient_grams)
+![alt text](assets/nutrient_grams)
+
 
 Then, we normalize the nutrition by calories to fairly compare recipes with varying calorie counts:
 
-![alt text](nutrition_proportion)
+
+![alt text](assets/nutrition_proportion)
 
 We then added the Nutrition Proportion per Calorie result for saturated fat to a new column called `saturated_fat`.
 
