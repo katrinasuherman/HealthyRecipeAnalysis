@@ -644,6 +644,6 @@ src="assets/interactive_permutation_test.html"
 width="800"
 height="550"
 frameborder="0"
-style="margin: 0; padding: 0; display: block;"
+style="margin: 0; padding: 0; display: block; line-height: 0; border: 0;"
 ></iframe>
 In conclusion, the p-value obtained from the permutation test is **0.168** which is greater than the chosen significance level of 0.05. There is no statistically significant evidence to suggest that the model's precision differs between the high-sugar and low-sugar groups. Therefore, the model appears to perform fairly with respect to the sugar group attribute.
